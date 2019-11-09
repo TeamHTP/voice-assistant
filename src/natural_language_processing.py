@@ -3,13 +3,15 @@ import spacy
 from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
 from src.skills.time import Time
+from src.skills.broken_translate import BrokenTranslate
 
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
 
 SKILLS = {
-    'time': Time().do
+    'time': Time().do,
+    'translate': BrokenTranslate().do
 }
 
 
