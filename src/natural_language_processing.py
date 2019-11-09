@@ -9,7 +9,7 @@ nlp = spacy.load('en_core_web_sm')
 evalulate_next_input = False
 
 SKILLS = {
-  'time': Time().do
+    'time': Time().do
 }
 
 
