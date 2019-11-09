@@ -31,6 +31,7 @@ def main():
 
 def on_speech(text):
     print("Recognized: %s" % text)
+    natty.text_to_token(text)
 
 
 if __name__ == '__main__':
