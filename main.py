@@ -1,5 +1,6 @@
 from src import natural_language_processing as natty
 from src import speech_to_text as stt
+from src import text_to_speech as tts
 from types import SimpleNamespace
 import argparse
 
@@ -26,6 +27,7 @@ def main():
       'vad_aggressiveness': 3
     }
     stt.init(SimpleNamespace(**stt_settings), on_speech)
+    tts.init()
     natty.text_to_token("Hey Oracle, what time is it in manhattan")
 
 

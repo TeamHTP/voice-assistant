@@ -6,6 +6,10 @@ from src.skills.time import Time
 
 nlp = spacy.load('en_core_web_sm')
 
+SKILLS = {
+  'time': Time().do
+}
+
 
 def text_to_token(input_str):
     docs = nlp(input_str)
@@ -18,5 +22,5 @@ def text_to_token(input_str):
         print(f'{word.text.upper()}')
         for syn in syns:
             print(f'{syn.name()}: {syn.lemma_names()}')
-        if word.text == 'time':
-            Time().do(None)
+        if word.text in SKILLS:
+          SKILLS[word.text](docs)
