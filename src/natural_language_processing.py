@@ -11,7 +11,8 @@ evalulate_next_input = False
 
 SKILLS = {
     'time': Time().do,
-    'translate': BrokenTranslate().do
+    'translate': BrokenTranslate().do,
+    'joke': Joke().do
 }
 
 
