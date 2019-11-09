@@ -9,7 +9,7 @@ nlp = spacy.load('en_core_web_sm')
 evalulate_next_input = False
 
 SKILLS = {
-  'time': Time().do
+    'time': Time().do
 }
 
 
@@ -25,16 +25,18 @@ def text_to_token(input_str):
         print(word.text, word.pos_)
         syns = wordnet.synsets(word.text)
         print(f'{word.text.upper()}')
+        if not asking_oracle:
+            if word.text == 'oracle':
+                asking_oracle = True
         for syn in syns:
             print(f'{syn.name()}: {syn.lemma_names()}')
-        if not asking_oracle:
-          if word.text == 'oracle':
-            asking_oracle = True
-        else:
-          if word.text in SKILLS:
-            SKILLS[word.text](docs)
-            evalulated = True
-            evalulate_next_input = False
+            for lemma_sym in syn.lemma_names():
+                if asking_oracle:
+                    if word.text in SKILLS:
+                        SKILLS[word.text](docs)
+                        evalulated = True
+                        evalulate_next_input = False
+                        return
     if asking_oracle and not evalulated:
-      evalulate_next_input = True
-      print("Next sentence will be evaluated")
+        evalulate_next_input = True
+        print("Next sentence will be evaluated")
