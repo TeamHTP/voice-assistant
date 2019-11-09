@@ -26,7 +26,7 @@ def main():
       'vad_aggressiveness': 3
     }
     stt.init(SimpleNamespace(**stt_settings), on_speech)
-    natty.text_to_token("Hey Oracle, what time is it")
+    natty.text_to_token("Hey Oracle, what time is it in manhattan")
 
 
 def on_speech(text):
