@@ -19,7 +19,7 @@ SKILLS = {
     'rain': weather_skill.do,
     'snow': weather_skill.do,
     'sunny': weather_skill.do
-    'translate': BrokenTranslate().do,
+#    'translate': BrokenTranslate().do,
     'joke': Joke().do
 }
 
