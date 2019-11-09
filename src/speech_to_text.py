@@ -169,7 +169,7 @@ def init(ARGS, cb_func):
 
     # Stream from microphone to DeepSpeech using VAD
     spinner = None
-    if not ARGS.nospinner: spinner = Halo(spinner='line')
+    if not ARGS.nospinner: spinner = Halo(spinner='dots')
     stream_context = model.setupStream()
     wav_data = bytearray()
     for frame in frames:

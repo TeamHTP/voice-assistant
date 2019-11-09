@@ -28,7 +28,7 @@ def main():
     }
     stt.init(SimpleNamespace(**stt_settings), on_speech)
     tts.init()
-    natty.text_to_token("Hey Oracle, what time is it in manhattan")
+    # natty.text_to_token("hey oracle, what time is it in manhattan")
 
 
 def on_speech(text):
