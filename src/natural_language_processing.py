@@ -37,6 +37,6 @@ def text_to_token(input_str):
                         evalulated = True
                         evalulate_next_input = False
                         return
-    if asking_oracle and not evalulated:
+    if asking_oracle and not evalulated and not evalulate_next_input:
         evalulate_next_input = True
         print("Next sentence will be evaluated")
