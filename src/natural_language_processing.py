@@ -4,7 +4,7 @@ from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
 from src.skills.time import Time
 from src.skills.weather import Weather
-from src.skills.broken_translate import BrokenTranslate
+from src.skills.joke import Joke
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -18,8 +18,7 @@ SKILLS = {
     'low_temperature': weather_skill.do,
     'rain': weather_skill.do,
     'snow': weather_skill.do,
-    'sunny': weather_skill.do
-#    'translate': BrokenTranslate().do,
+    'sunny': weather_skill.do,
     'joke': Joke().do
 }
 
@@ -38,7 +37,7 @@ def text_to_token(input_str):
         syns = wordnet.synsets(word.text)
         print(f'{word.text.upper()}')
         if not asking_oracle:
-            if word.text == 'oracle':
+            if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical':
                 asking_oracle = True
         for syn in syns:
             print(f'{syn.name()}: {syn.lemma_names()}')
