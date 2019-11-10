@@ -22,7 +22,7 @@
                 background: rgb(251, 158, 62);
                 background: linear-gradient(-17deg, rgba(251, 158, 62, 1) 0%, rgba(255, 203, 155, 1) 100%);
                 transform: scale(1);
-                animation: pulse 1.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) paused;
+                animation: pulse 1.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite paused;
             }
 
             @keyframes pulse {
@@ -34,7 +34,7 @@
                 50% {
                     transform: scale(1);
                     box-shadow: 0 0 0 12px #f2cfa9;
-                }   
+                }
 
                 100% {
                     transform: scale(0.9);
@@ -54,8 +54,10 @@
             ws.onmessage = function (event) {
                 if (event.data == 'start') {
                     circle.style.animationPlayState = "running"
+                    circle.style.animationIterationCount = "infinite"
                 } else {
-                    circle.style.animationPlayState = "paused"
+                    circle.style.animationPlayState = "running"
+                    circle.style.animationIterationCount = "1"
                 }
             }
         </script>

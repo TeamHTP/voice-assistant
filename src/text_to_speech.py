@@ -1,6 +1,7 @@
 import pyttsx3
 import multiprocessing
 import os
+from src import ws_client
 
 
 engine = pyttsx3.init()
@@ -23,6 +24,8 @@ def kill():
 
 
 def do(text):
+    ws_client.send_start()
     print(text)
     engine.say(text)
     engine.runAndWait()
+    ws_client.send_stop()
