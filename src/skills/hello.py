@@ -13,5 +13,4 @@ class Hello:
     def get_confidence(self, synonyms, spoken):
         if 'hello' in spoken:
             return 1
-        else:
-            return 0
+        return 0

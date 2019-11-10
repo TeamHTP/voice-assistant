@@ -19,3 +19,4 @@ from src.skills import kill
 from src.skills import time
 from src.skills import timer
 from src.skills import weather
+from src.skills import hello
