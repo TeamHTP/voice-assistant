@@ -36,6 +36,8 @@ def text_to_token(input_str):
         print(ent)
     asking_oracle = evalulate_next_input
     evalulated = False
+    evalulate_next_input = False
+    oracle_detected = False
     synonyms_list = []
     i = 0
     for word in docs:
@@ -45,6 +47,7 @@ def text_to_token(input_str):
         if not asking_oracle:
             if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical' or word.text == 'orcal':
                 asking_oracle = True
+                oracle_detected = True
 
         if asking_oracle:
             for syn in syns:
@@ -57,10 +60,9 @@ def text_to_token(input_str):
                         if lemma_sym in SKILLS:
                             SKILLS[lemma_sym](docs[i:])
                             evalulated = True
-                            evalulate_next_input = False
                             return
         i += 1
 
-    if asking_oracle and not evalulated and not evalulate_next_input:
+    if oracle_detected and not evalulated:
         evalulate_next_input = True
         print("Next sentence will be evaluated")
