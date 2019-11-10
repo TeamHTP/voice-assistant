@@ -33,6 +33,7 @@ if __name__ == '__main__':
     from src import natural_language_processing as natty
     from src import speech_to_text as stt
     from src import text_to_speech as tts
+    from src import ws_server
     from types import SimpleNamespace
     import argparse
     import multiprocessing

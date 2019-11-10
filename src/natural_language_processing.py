@@ -3,6 +3,7 @@ import spacy
 from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
 from src.skills import skills
+from src import ws_server
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -53,10 +54,12 @@ def text_to_token(input_str):
         highest_conf_skill = get_highest_confidence_skill(synonyms_list, words)
         if highest_conf_skill:
             highest_conf_skill.do(docs[i:])
+            ws_server.send_stop()
             return
 
     if heard_oracle and not evalulated:
         evalulate_next_input = True
+        ws_server.send_start()
         print("Next sentence will be evaluated")
 
 

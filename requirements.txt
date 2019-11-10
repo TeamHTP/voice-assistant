@@ -11,3 +11,4 @@ requests<3.0.0,>=2.13.0
 ipinfo==3.0.0
 pyowm==2.10.0
 praw==6.4.0
+websockets==8.1
