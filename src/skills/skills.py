@@ -14,6 +14,7 @@ def register(skill):
 
 from src.skills import pasta
 from src.skills import joke
+from src.skills import kill
 from src.skills import time
 from src.skills import timer
 from src.skills import weather

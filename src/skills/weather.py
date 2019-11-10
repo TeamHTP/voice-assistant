@@ -20,7 +20,7 @@ class Weather(Skill):
 
 
     def do(self, params):
-        self.use_open_weather(OPEN_WEATHER_KEY)
+        thread = self.use_open_weather(OPEN_WEATHER_KEY)
 
 
     def use_open_weather(self, api_key):

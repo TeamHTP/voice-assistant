@@ -15,7 +15,7 @@ reddit = praw.Reddit(
 
 @register
 class Pasta(Skill):
-    primary_triggers = ['pasta']
+    primary_triggers = ['pasta', 'posta', 'posto', 'posita']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
