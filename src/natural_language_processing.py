@@ -35,9 +35,7 @@ jeffrey = [
     'joffry',
     'jofferey',
     'jofring',
-    'afree',
-    'geofrey',
-    'geofry'
+    'afree'
 ]
 
 def text_to_token(input_str):
@@ -87,7 +85,7 @@ def get_highest_confidence_skill(synonyms_list, spoken_list):
     conf_skill = None
     for primary_trigger, skill in skills.registry.items():
         skill_conf = skill.get_confidence(synonyms_list, spoken_list)
-        print(f'Confidence in {primary_trigger[0]}: {skill_conf}')
+        print(f'Confidence in {type(skill).__name__}: {skill_conf}')
         if skill_conf > highest_conf:
             highest_conf = skill_conf
             conf_skill = skill

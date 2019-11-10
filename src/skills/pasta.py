@@ -28,7 +28,7 @@ class Pasta(Skill):
         post_data = reddit.submission(id=self.post_ids[randint(0, self.limit)])
         text = post_data.selftext.replace('\n\n', ' ').replace('\n', '')
         tts.say(text)
-    
+
     def get_confidence(self, synonyms, spoken):
         if 'pasta' in synonyms:
             return 1

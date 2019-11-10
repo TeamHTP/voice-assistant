@@ -1,10 +1,3 @@
-from src import natural_language_processing as natty
-from src import speech_to_text as stt
-from src import text_to_speech as tts
-from types import SimpleNamespace
-import argparse
-
-
 def main():
     parser = argparse.ArgumentParser(description='Stream from microphone using VAD')
     parser.add_argument('-m', '--model', required=True,
@@ -37,4 +30,11 @@ def on_speech(text):
 
 
 if __name__ == '__main__':
+    from src import natural_language_processing as natty
+    from src import speech_to_text as stt
+    from src import text_to_speech as tts
+    from types import SimpleNamespace
+    import argparse
+    import multiprocessing
+    multiprocessing.set_start_method('spawn')
     main()

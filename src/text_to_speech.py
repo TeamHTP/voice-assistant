@@ -1,9 +1,11 @@
 import pyttsx3
 import multiprocessing
+import os
 
 
 engine = pyttsx3.init()
 THREADS = []
+print(multiprocessing.current_process().name)
 
 
 def say(text):
