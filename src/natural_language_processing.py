@@ -75,6 +75,7 @@ def text_to_token(input_str):
                         synonyms_list.append(lemma_sym)
 
     if asking_jeffrey:
+        print("Recognized: %s" % input_str)
         words = [word.text for word in docs[i:]]
         highest_conf_skill = get_highest_confidence_skill(synonyms_list, words)
         if highest_conf_skill:

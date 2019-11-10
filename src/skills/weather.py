@@ -27,7 +27,7 @@ class Weather(Skill):
         confidence = 0
         outdoors_in_syn = 'outdoors' in synonyms
         exist_in_syn = 'exist' in synonyms
-        if outdoors_in_syn or exist_in_syn:
+        if outdoors_in_syn:
             if 'cold' in synonyms:
                 confidence += 0.9
             elif 'hot' in synonyms:
