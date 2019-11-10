@@ -34,7 +34,7 @@ jeffrey = [
     'jopfery',
     'joffry',
     'jofferey',
-    'jofring', 
+    'jofring',
     'afree'
 ]
 
@@ -69,10 +69,11 @@ def text_to_token(input_str):
                     if not lemma_sym in synonyms_list:
                         synonyms_list.append(lemma_sym)
 
-            highest_conf_skill = get_highest_confidence_skill(synonyms_list, docs[i:])
-            if highest_conf_skill:
-                highest_conf_skill.do(docs[i:])
-                return
+    if asking_jeffrey:
+        highest_conf_skill = get_highest_confidence_skill(synonyms_list, docs[i:])
+        if highest_conf_skill:
+            highest_conf_skill.do(docs[i:])
+            return
 
     if heard_jeffrey and not evalulated:
         evalulate_next_input = True
