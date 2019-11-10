@@ -4,7 +4,8 @@ from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
 from src.skills.time import Time
 from src.skills.weather import Weather
-from src.skills.broken_translate import BrokenTranslate
+# from src.skills.broken_translate import BrokenTranslate
+from src.skills.joke import Joke
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -18,7 +19,7 @@ SKILLS = {
     'low_temperature': weather_skill.do,
     'rain': weather_skill.do,
     'snow': weather_skill.do,
-    'sunny': weather_skill.do
+    'sunny': weather_skill.do,
 #    'translate': BrokenTranslate().do,
     'joke': Joke().do
 }

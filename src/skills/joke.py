@@ -7,7 +7,7 @@ class Joke:
 
     def do(self, params):
         response = requests.get('https://official-joke-api.appspot.com/jokes/random')
-        if response.status_code == 200 && response.headers['content-type'] == 'application/json':
+        if response.status_code == 200 and response.headers['content-type'] == 'application/json; charset=utf-8':
             json = response.json()
             setup = json['setup']
             punchline = json['punchline']
