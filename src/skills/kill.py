@@ -13,3 +13,9 @@ class Kill(Skill):
 
     def do(self, params):
         tts.kill()
+
+    def get_confidence(self, synonyms, spoken):
+        if ('stop' in synonyms or 'kill' in synonyms) and 'timer' not in synonyms:
+            return 1
+        else:
+            return 0

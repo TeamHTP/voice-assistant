@@ -7,9 +7,9 @@ from src.skills.skills import register
 
 
 reddit = praw.Reddit(
-            client_id=os.getenv('PRAW_CLIENTID'),
-            client_secret=os.getenv('PRAW_CLIENTSECRET'),
-            user_agent=os.getenv('PRAW_USER')
+            client_id=os.getenv('CLIENTID'),
+            client_secret=os.getenv('CLIENTSECRET'),
+            user_agent=os.getenv('USER')
             )
 
 
@@ -28,3 +28,9 @@ class Pasta(Skill):
         post_data = reddit.submission(id=self.post_ids[randint(0, self.limit)])
         text = post_data.selftext.replace('\n\n', ' ').replace('\n', '')
         tts.say(text)
+    
+    def get_confidence(self, synonyms, spoken):
+        if 'pasta' in synonyms:
+            return 1
+        else:
+            return 0

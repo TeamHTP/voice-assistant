@@ -15,12 +15,22 @@ class Timer(Skill):
 
     def do(self, params):
         if not self.started:
-            self.started = True
-            self.time = time.time()
-            tts.say('timer started')
+            for word in params:
+                if word.text == 'start':
+                    self.started = True
+                    self.time = time.time()
+                    tts.say('timer started')
         else:
-            self.started = False
-            self.time = str(round((time.time() - self.time), 2))
-            temp_str = 'the timer stop. time was ' + self.time + ' seconds'
-            self.time = 0
-            tts.say(temp_str)
+            for word in params:
+                if word.text == 'stop':
+                    self.started = False
+                    self.time = str(round((time.time() - self.time), 2))
+                    temp_str = 'the timer stop. time was ' + self.time + ' seconds'
+                    self.time = 0
+                    tts.say(temp_str)
+
+    def get_confidence(self, synonyms, spoken):
+        if 'timer' in synonyms or 'start' in synonyms or ('timer' in synonyms and 'stop' in synonyms):
+            return 1
+        else:
+            return 0

@@ -7,30 +7,61 @@ from src.skills import skills
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
+jeffrey = [
+    'jeffrey',
+    'jefffrey',
+    'jeffre',
+    'jeoffrey',
+    'jefferey',
+    'cheffrey',
+    'geffrey',
+    'geffry',
+    'ajeffrey',
+    'geoffrey',
+    'heffrey',
+    'chefferey',
+    'jeffry',
+    'ajeofry',
+    'jeoprey',
+    'effrey',
+    'jeofary',
+    'jeofrey',
+    'adjeffrey',
+    'jeopry',
+    'joffri',
+    'joffrey',
+    'jowferey',
+    'jopfery',
+    'joffry',
+    'jofferey',
+    'jofring', 
+    'afree'
+]
 
 def text_to_token(input_str):
     global evalulate_next_input
+    global jeffrey
     docs = nlp(input_str)
     entities=[(i, i.label_, i.label) for i in docs.ents]
     # for ent in entities:
         # print(ent)
-    asking_oracle = evalulate_next_input
+    asking_jeffrey = evalulate_next_input
     evalulated = False
     evalulate_next_input = False
-    heard_oracle = False
+    heard_jeffrey = False
     synonyms_list = []
     i = 0
     for word in docs:
         # print(word.text, word.pos_)
         syns = wordnet.synsets(word.text)
         # print(f'{word.text.upper()}')
-        if not asking_oracle:
-            if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical' or word.text == 'orcal':
-                asking_oracle = True
-                heard_oracle = True
+        if not asking_jeffrey:
+            if word.text in jeffrey:
+                asking_jeffrey = True
+                heard_jeffrey = True
             i += 1
 
-        if asking_oracle:
+        if asking_jeffrey:
             for syn in syns:
                 # print(f'{syn.name()}: {syn.lemma_names()}')
 
@@ -43,7 +74,7 @@ def text_to_token(input_str):
                 highest_conf_skill.do(docs[i:])
                 return
 
-    if heard_oracle and not evalulated:
+    if heard_jeffrey and not evalulated:
         evalulate_next_input = True
         print("Next sentence will be evaluated")
 
