@@ -5,12 +5,14 @@ from nltk.tokenize import PunktSentenceTokenizer
 from src.skills.time import Time
 from src.skills.weather import Weather
 from src.skills.joke import Joke
+from src.skills.pasta import Pasta
 
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
 
 weather_skill = Weather()
+pasta_skill = Pasta()
 
 SKILLS = {
     'time': Time().do,
@@ -19,7 +21,10 @@ SKILLS = {
     'rain': weather_skill.do,
     'snow': weather_skill.do,
     'sunny': weather_skill.do,
-    'joke': Joke().do
+    'joke': Joke().do,
+    'pasta': pasta_skill.do,
+    'posta': pasta_skill.do,
+    'posto': pasta_skill.do
 }
 
 
@@ -38,7 +43,7 @@ def text_to_token(input_str):
         syns = wordnet.synsets(word.text)
         # print(f'{word.text.upper()}')
         if not asking_oracle:
-            if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical':
+            if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical' or word.text == 'orcal':
                 asking_oracle = True
 
         if asking_oracle:
