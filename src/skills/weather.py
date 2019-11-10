@@ -44,7 +44,7 @@ class Weather(Skill):
                 confidence += 0.4
             elif 'bad' in synonyms:
                 confidence += 0.4
-        if 'weather' in synonyms and 'what' in synonyms:
+        if ('weather' in synonyms or 'whether' in spoken or 'wether' in spoken) and 'what' in synonyms:
             confidence += 0.9
         return confidence
 

@@ -30,7 +30,10 @@ class Pasta(Skill):
         tts.say(text)
 
     def get_confidence(self, synonyms, spoken):
-        if 'pasta' in synonyms:
+        if ('pasta' in synonyms or 'possof' in spoken or 'posta' in spoken or 'possta' in spoken 
+         or 'paster' in spoken or 'possa' in spoken or 'postta' in spoken or 'pose' in spoken 
+         or 'posstu' in spoken or 'posto' in spoken or 'posito' in spoken or 'possitar' in spoken
+         or 'poster' in spoken or 'postita' in spoken or 'pusta' in spoken or 'possitle' in spoken):
             return 1
         else:
             return 0
