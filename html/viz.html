@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .background {
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: rgb(251, 158, 62);
+                background: linear-gradient(253deg, rgba(251, 158, 62, 1) 0%, rgba(255, 203, 155, 1) 100%);
+            }
+
+            .circle {
+                border-radius: 999px;
+                width: 50vh;
+                height: 50vh;
+                position: absolute;
+                top: 25vh;
+                left: calc(50vw - 25vh);
+                background: rgb(251, 158, 62);
+                background: linear-gradient(-17deg, rgba(251, 158, 62, 1) 0%, rgba(255, 203, 155, 1) 100%);
+                transform: scale(1);
+                animation: pulse 1.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(0.9);
+                    box-shadow: 0 0 0 0 #f2cfa9;
+                }
+
+                50% {
+                    transform: scale(1);
+                    box-shadow: 0 0 0 12px #f2cfa9;
+                }   
+
+                100% {
+                    transform: scale(0.9);
+                    box-shadow: 0 0 0 0 #f2cfa9;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="background">
+            <div class="circle"></div>
+        </div>
+
+        <script>
+        </script>
+    </body>
+</html>
