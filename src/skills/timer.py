@@ -6,7 +6,7 @@ from src.skills.skills import register
 
 @register
 class Timer(Skill):
-    primary_triggers = ['start', 'stop']
+    primary_triggers = ['start']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

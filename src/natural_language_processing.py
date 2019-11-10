@@ -35,7 +35,9 @@ jeffrey = [
     'joffry',
     'jofferey',
     'jofring',
-    'afree'
+    'afree',
+    'geofrey',
+    'geofry'
 ]
 
 def text_to_token(input_str):
