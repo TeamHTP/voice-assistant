@@ -1,5 +1,6 @@
 import nltk
 import spacy
+import time
 from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
 from src.skills import skills
@@ -8,6 +9,7 @@ from src import ws_client
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
+last_heard_oracle = time.time()
 names = [
     'randall',
     'randal',
@@ -17,17 +19,20 @@ names = [
     'randl',
     'rendel',
     'randol',
-    'randle'
+    'randle',
+    'rendole',
+    'randole'
 ]
 
 def text_to_token(input_str):
     global evalulate_next_input
-    global jeffrey
+    global names
+    global last_heard_oracle
     docs = nlp(input_str)
     entities=[(i, i.label_, i.label) for i in docs.ents]
     # for ent in entities:
         # print(ent)
-    asking_oracle = evalulate_next_input
+    asking_oracle = evalulate_next_input and time.time() - last_heard_oracle < 10
     evalulated = False
     evalulate_next_input = False
     heard_oracle = False
@@ -63,6 +68,7 @@ def text_to_token(input_str):
 
     if heard_oracle and not evalulated:
         evalulate_next_input = True
+        last_heard_oracle = time.time()
         print("Next sentence will be evaluated")
     elif not evalulated:
         ws_client.send_stop()

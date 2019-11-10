@@ -20,7 +20,12 @@ def main():
       'vad_aggressiveness': 3
     }
     stt.init(SimpleNamespace(**stt_settings), on_speech)
-    tts.init()
+    """
+    # Emergency plan Z
+    while True:
+        line = input('> ')
+        on_speech(line)
+    """
     # natty.text_to_token("hey oracle, what time is it in manhattan")
 
 
