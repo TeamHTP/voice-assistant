@@ -2,25 +2,13 @@ import nltk
 import spacy
 from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
-from src.skills.time import Time
-from src.skills.weather import Weather
-from src.skills.joke import Joke
+import src.skills.skills
 
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
 
 weather_skill = Weather()
-
-SKILLS = {
-    'time': Time().do,
-    'weather': weather_skill.do,
-    'low_temperature': weather_skill.do,
-    'rain': weather_skill.do,
-    'snow': weather_skill.do,
-    'sunny': weather_skill.do,
-    'joke': Joke().do
-}
 
 
 def text_to_token(input_str):
@@ -49,8 +37,8 @@ def text_to_token(input_str):
                     if not lemma_sym in synonyms_list:
                         synonyms_list.append(lemma_sym)
                     if asking_oracle:
-                        if lemma_sym in SKILLS:
-                            SKILLS[lemma_sym](docs[i:])
+                        if lemma_sym in skills.registry:
+                            skills.registry[lemma_sym](docs[i:])
                             evalulated = True
                             evalulate_next_input = False
                             return

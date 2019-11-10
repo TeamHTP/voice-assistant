@@ -3,12 +3,14 @@ from src import text_to_speech as tts
 import os
 from src import location
 import pyowm
+from src.skills.skills import register
 
 OPEN_WEATHER_KEY = os.getenv('OPEN_WEATHER_KEY')
 
 owm = pyowm.OWM(OPEN_WEATHER_KEY)
 
 
+@register
 class Weather(Skill):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
