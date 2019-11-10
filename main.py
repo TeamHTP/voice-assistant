@@ -25,7 +25,7 @@ def main():
 
 
 def on_speech(text):
-    # print("Recognized: %s" % text)
+    print("Recognized: %s" % text)
     natty.text_to_token(text)
 
 
