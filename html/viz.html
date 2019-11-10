@@ -12,7 +12,7 @@
                 background: linear-gradient(253deg, rgba(251, 158, 62, 1) 0%, rgba(255, 203, 155, 1) 100%);
             }
 
-            .circle {
+            #circle {
                 border-radius: 999px;
                 width: 50vh;
                 height: 50vh;
@@ -22,7 +22,7 @@
                 background: rgb(251, 158, 62);
                 background: linear-gradient(-17deg, rgba(251, 158, 62, 1) 0%, rgba(255, 203, 155, 1) 100%);
                 transform: scale(1);
-                animation: pulse 1.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+                animation: pulse 1.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) paused;
             }
 
             @keyframes pulse {
@@ -45,10 +45,19 @@
     </head>
     <body>
         <div class="background">
-            <div class="circle"></div>
+            <div id="circle"></div>
         </div>
 
         <script>
+            var ws = new WebSocket("ws://localhost:5678/"),
+                circle = document.getElementById('circle')
+            ws.onmessage = function (event) {
+                if (event.data == 'start') {
+                    circle.style.animationPlayState = "running"
+                } else {
+                    circle.style.animationPlayState = "paused"
+                }
+            }
         </script>
     </body>
 </html>
