@@ -7,9 +7,9 @@ from src.skills.skills import register
 
 
 reddit = praw.Reddit(
-            client_id=os.getenv('CLIENTID'),
-            client_secret=os.getenv('CLIENTSECRET'),
-            user_agent=os.getenv('USER')
+            client_id=os.getenv('PRAW_CLIENTID'),
+            client_secret=os.getenv('PRAW_CLIENTSECRET'),
+            user_agent=os.getenv('PRAW_USER')
             )
 
 
@@ -21,7 +21,7 @@ class Pasta(Skill):
         super().__init__(*args, **kwargs)
         self.post_ids = []
         self.limit = 50
-        for submission in reddit.subreddit("copypasta").hot(limit=self.limit):         
+        for submission in reddit.subreddit("copypasta").hot(limit=self.limit):
             self.post_ids.append(submission.id)
 
     def do(self, params):

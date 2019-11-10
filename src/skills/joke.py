@@ -19,3 +19,9 @@ class Joke:
             tts.say(setup)
             time.sleep(0.5)
             tts.say(punchline)
+
+
+    def get_confidence(self, synonyms, spoken):
+        if 'say' in synonyms and 'joke' in synonyms:
+            return 1
+        return 0

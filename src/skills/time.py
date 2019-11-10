@@ -14,3 +14,10 @@ class Time(Skill):
 
     def do(self, params):
         tts.say('The time is ' + datetime.now().strftime('%I:%M %p'))
+
+
+    def get_confidence(self, synonyms, spoken):
+        if 'time' in synonyms:
+            return 1
+        else:
+            return 0

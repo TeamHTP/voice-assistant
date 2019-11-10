@@ -23,6 +23,32 @@ class Weather(Skill):
         thread = self.use_open_weather(OPEN_WEATHER_KEY)
 
 
+    def get_confidence(self, synonyms, spoken):
+        confidence = 0
+        outdoors_in_syn = 'outdoors' in synonyms
+        exist_in_syn = 'exist' in synonyms
+        if outdoors_in_syn or exist_in_syn:
+            if 'cold' in synonyms:
+                confidence += 0.9
+            elif 'hot' in synonyms:
+                confidence += 0.9
+            elif 'snow' in synonyms:
+                confidence += 0.9
+            elif 'rain' in synonyms:
+                confidence += 0.9
+            elif 'cloudy' in synonyms:
+                confidence += 0.9
+        if outdoors_in_syn and exist_in_syn:
+            confidence += 0.5
+            if 'good' in synonyms:
+                confidence += 0.4
+            elif 'bad' in synonyms:
+                confidence += 0.4
+        if 'weather' in synonyms and 'what' in synonyms:
+            confidence += 0.9
+        return confidence
+
+
     def use_open_weather(self, api_key):
         global owm
         loc_data = location.get_location()
