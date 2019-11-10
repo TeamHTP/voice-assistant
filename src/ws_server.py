@@ -19,7 +19,3 @@ def send_stop():
 async def conn(ws, path):
     global connected_sockets
     connected_sockets.append(ws)
-
-start_server = websockets.serve(conn, "localhost", 5678)
-asyncio.get_event_loop().run_until_complete(start_server)
-#asyncio.get_event_loop().run_forever()

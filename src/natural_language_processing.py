@@ -14,7 +14,8 @@ names = [
     'erandel',
     'randel',
     'erandom',
-    'randl'
+    'randl',
+    'rendel'
 ]
 
 def text_to_token(input_str):

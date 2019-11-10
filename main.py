@@ -1,4 +1,4 @@
-def main():
+async def main():
     parser = argparse.ArgumentParser(description='Stream from microphone using VAD')
     parser.add_argument('-m', '--model', required=True,
                         help='Path to the model (protocol buffer binary file, or entire directory containing all standard-named files for model)')
@@ -37,5 +37,12 @@ if __name__ == '__main__':
     from types import SimpleNamespace
     import argparse
     import multiprocessing
+    import asyncio
     multiprocessing.set_start_method('spawn')
-    main()
+
+    async def init_ws_server():
+        server = await websockets.serve(ws_server.conn, "localhost", 5678)
+        await server.server.serve_forever()
+
+
+    asyncio.get_event_loop().run_until_complete(asyncio.gather(main(), init_ws_server()))
