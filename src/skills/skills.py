@@ -20,3 +20,4 @@ from src.skills import time
 from src.skills import timer
 from src.skills import weather
 from src.skills import hello
+from src.skills import ping
