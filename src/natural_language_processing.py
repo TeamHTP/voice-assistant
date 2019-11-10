@@ -2,31 +2,11 @@ import nltk
 import spacy
 from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
-from src.skills.time import Time
-from src.skills.weather import Weather
-from src.skills.joke import Joke
-from src.skills.pasta import Pasta
+from src.skills import skills
 
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
-
-weather_skill = Weather()
-pasta_skill = Pasta()
-
-SKILLS = {
-    'time': Time().do,
-    'weather': weather_skill.do,
-    'low_temperature': weather_skill.do,
-    'rain': weather_skill.do,
-    'snow': weather_skill.do,
-    'sunny': weather_skill.do,
-    'joke': Joke().do,
-    'pasta': pasta_skill.do,
-    'posta': pasta_skill.do,
-    'posto': pasta_skill.do
-}
-
 
 def text_to_token(input_str):
     global evalulate_next_input
@@ -37,7 +17,7 @@ def text_to_token(input_str):
     asking_oracle = evalulate_next_input
     evalulated = False
     evalulate_next_input = False
-    oracle_detected = False
+    heard_oracle = False
     synonyms_list = []
     i = 0
     for word in docs:
@@ -47,7 +27,7 @@ def text_to_token(input_str):
         if not asking_oracle:
             if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical' or word.text == 'orcal':
                 asking_oracle = True
-                oracle_detected = True
+                heard_oracle = True
 
         if asking_oracle:
             for syn in syns:
@@ -57,12 +37,11 @@ def text_to_token(input_str):
                     if not lemma_sym in synonyms_list:
                         synonyms_list.append(lemma_sym)
                     if asking_oracle:
-                        if lemma_sym in SKILLS:
-                            SKILLS[lemma_sym](docs[i:])
+                        if lemma_sym in skills.registry:
+                            skills.registry[lemma_sym].do(docs[i:])
                             evalulated = True
                             return
-        i += 1
 
-    if oracle_detected and not evalulated:
+    if heard_oracle and not evalulated:
         evalulate_next_input = True
         print("Next sentence will be evaluated")

@@ -1,9 +1,13 @@
 from src import text_to_speech as tts
 import requests
 import time
+from src.skills.skills import register
 
 
+@register
 class Joke:
+
+    primary_triggers = ['joke']
 
     def do(self, params):
         response = requests.get('https://official-joke-api.appspot.com/jokes/random')
