@@ -32,24 +32,29 @@ def text_to_token(input_str):
     asking_oracle = evalulate_next_input
     evalulated = False
     synonyms_list = []
+    i = 0
     for word in docs:
-        print(word.text, word.pos_)
+        # print(word.text, word.pos_)
         syns = wordnet.synsets(word.text)
-        print(f'{word.text.upper()}')
+        # print(f'{word.text.upper()}')
         if not asking_oracle:
             if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical':
                 asking_oracle = True
-        for syn in syns:
-            print(f'{syn.name()}: {syn.lemma_names()}')
-            for lemma_sym in syn.lemma_names():
-                if not lemma_sym in synonyms_list:
-                    synonyms_list.append(lemma_sym)
-                if asking_oracle:
-                    if lemma_sym in SKILLS:
-                        SKILLS[lemma_sym](docs)
-                        evalulated = True
-                        evalulate_next_input = False
-                        return
+
+        if asking_oracle:
+            for syn in syns:
+                print(f'{syn.name()}: {syn.lemma_names()}')
+
+                for lemma_sym in syn.lemma_names():
+                    if not lemma_sym in synonyms_list:
+                        synonyms_list.append(lemma_sym)
+                    if asking_oracle:
+                        if lemma_sym in SKILLS:
+                            SKILLS[lemma_sym](docs[i:])
+                            evalulated = True
+                            evalulate_next_input = False
+                            return
+        i += 1
 
     if asking_oracle and not evalulated and not evalulate_next_input:
         evalulate_next_input = True
