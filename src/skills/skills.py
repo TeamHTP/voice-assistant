@@ -12,6 +12,8 @@ def register(skill):
         else:
             print(f'Skill: {type(skill_instance).__name__} not registered for word: {word}, due to conflict.', file=sys.stderr)
 
+from src.skills import pasta
 from src.skills import joke
 from src.skills import time
+from src.skills import timer
 from src.skills import weather
