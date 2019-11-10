@@ -5,3 +5,7 @@ class Skill(object):
 
     def do(self, params):
         raise NotImplementedError
+
+
+    def get_confidence(self, synonyms, spoken):
+        raise NotImplementedError

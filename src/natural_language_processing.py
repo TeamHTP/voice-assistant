@@ -28,6 +28,7 @@ def text_to_token(input_str):
             if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical' or word.text == 'orcal':
                 asking_oracle = True
                 heard_oracle = True
+            i += 1
 
         if asking_oracle:
             for syn in syns:
@@ -36,12 +37,24 @@ def text_to_token(input_str):
                 for lemma_sym in syn.lemma_names():
                     if not lemma_sym in synonyms_list:
                         synonyms_list.append(lemma_sym)
-                    if asking_oracle:
-                        if lemma_sym in skills.registry:
-                            skills.registry[lemma_sym].do(docs[i:])
-                            evalulated = True
-                            return
+
+            highest_conf_skill = get_highest_confidence_skill(synonyms_list, docs[i:])
+            if highest_conf_skill:
+                highest_conf_skill.do(docs[i:])
+                return
 
     if heard_oracle and not evalulated:
         evalulate_next_input = True
         print("Next sentence will be evaluated")
+
+
+def get_highest_confidence_skill(synonyms_list, spoken_list):
+    highest_conf = 0
+    conf_skill = None
+    for primary_trigger, skill in skills.registry.items():
+        skill_conf = skill.get_confidence(synonyms_list, spoken_list)
+        print(f'Confidence in {type(skill).__name__}: {skill_conf}')
+        if skill_conf > highest_conf:
+            highest_conf = skill_conf
+            conf_skill = skill
+    return conf_skill
