@@ -2,13 +2,11 @@ import nltk
 import spacy
 from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
-import src.skills.skills
+from src.skills import skills
 
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
-
-weather_skill = Weather()
 
 
 def text_to_token(input_str):
@@ -30,6 +28,7 @@ def text_to_token(input_str):
             if word.text == 'oracle' or word.text == 'oricle' or word.text == 'oricl' or word.text == 'oracol' or word.text == 'eyoricle' or word.text == 'orical':
                 asking_oracle = True
                 heard_oracle = True
+            i += 1
 
         if asking_oracle:
             for syn in syns:
@@ -40,10 +39,9 @@ def text_to_token(input_str):
                         synonyms_list.append(lemma_sym)
                     if asking_oracle:
                         if lemma_sym in skills.registry:
-                            skills.registry[lemma_sym](docs[i:])
+                            skills.registry[lemma_sym].do(docs[i:])
                             evalulated = True
                             return
-        i += 1
 
     evalulate_next_input = False
     if heard_oracle and not evalulated:

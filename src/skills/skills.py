@@ -1,13 +1,17 @@
 import sys
 
-
 registry = {}
 
 
 def register(skill):
-    def wrapper():
-        for word in skill.primary_triggers:
-            if word not in registry.keys():
-                registry[word] = skill
-            else:
-                print(f'Skill: {type(skill).__name__} not registered for word: {word}, due to conflict.', file=sys.stderr)
+    skill_instance = skill()
+    for word in skill_instance.primary_triggers:
+        if word not in registry:
+            registry[word] = skill_instance
+            print(f'Skill: {type(skill_instance).__name__} registered for word: {word}.')
+        else:
+            print(f'Skill: {type(skill_instance).__name__} not registered for word: {word}, due to conflict.', file=sys.stderr)
+
+from src.skills import joke
+from src.skills import time
+from src.skills import weather

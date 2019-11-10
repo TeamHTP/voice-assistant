@@ -12,6 +12,9 @@ owm = pyowm.OWM(OPEN_WEATHER_KEY)
 
 @register
 class Weather(Skill):
+
+    primary_triggers = ['weather']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

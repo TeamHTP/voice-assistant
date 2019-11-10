@@ -1,7 +1,7 @@
 from src import text_to_speech as tts
 import requests
 import time
-from skills import register
+from src.skills.skills import register
 
 
 @register

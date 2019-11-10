@@ -5,6 +5,9 @@ from src.skills.skills import register
 
 @register
 class Time(Skill):
+
+    primary_triggers = ['time']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
