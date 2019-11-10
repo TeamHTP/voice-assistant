@@ -21,3 +21,4 @@ from src.skills import timer
 from src.skills import weather
 from src.skills import hello
 from src.skills import ping
+from src.skills import cat
