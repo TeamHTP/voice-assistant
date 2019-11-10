@@ -3,6 +3,7 @@ import praw
 from random import randint
 from src import text_to_speech as tts
 from src.skills.skill import Skill
+from src.skills.skills import register
 
 
 reddit = praw.Reddit(
@@ -11,7 +12,11 @@ reddit = praw.Reddit(
             user_agent=os.getenv('PRAW_USER')
             )
 
+
+@register
 class Pasta(Skill):
+    primary_triggers = ['pasta']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.post_ids = []

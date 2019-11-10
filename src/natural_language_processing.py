@@ -12,8 +12,8 @@ def text_to_token(input_str):
     global evalulate_next_input
     docs = nlp(input_str)
     entities=[(i, i.label_, i.label) for i in docs.ents]
-    for ent in entities:
-        print(ent)
+    # for ent in entities:
+        # print(ent)
     asking_oracle = evalulate_next_input
     evalulated = False
     evalulate_next_input = False
@@ -32,7 +32,7 @@ def text_to_token(input_str):
 
         if asking_oracle:
             for syn in syns:
-                print(f'{syn.name()}: {syn.lemma_names()}')
+                # print(f'{syn.name()}: {syn.lemma_names()}')
 
                 for lemma_sym in syn.lemma_names():
                     if not lemma_sym in synonyms_list:
