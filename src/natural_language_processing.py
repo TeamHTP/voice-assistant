@@ -7,40 +7,13 @@ from src.skills import skills
 nlp = spacy.load('en_core_web_sm')
 
 evalulate_next_input = False
-jeffrey = [
-    'jeffrey',
-    'jefffrey',
-    'jeffre',
-    'jeoffrey',
-    'jefferey',
-    'cheffrey',
-    'geffrey',
-    'geffry',
-    'ajeffrey',
-    'geoffrey',
-    'heffrey',
-    'chefferey',
-    'jeffry',
-    'ajeofry',
-    'jeoprey',
-    'effrey',
-    'jeofary',
-    'jeofrey',
-    'adjeffrey',
-    'jeopry',
-    'joffri',
-    'joffrey',
-    'jowferey',
-    'jopfery',
-    'joffry',
-    'jofferey',
-    'jofring',
-    'afree',
-    'juffery',
-    'jiffrey',
-    'sheafferey',
-    'deffrey',
-    'deffery'
+names = [
+    'randall',
+    'randal',
+    'erandel',
+    'randel',
+    'erandom',
+    'randl'
 ]
 
 def text_to_token(input_str):
@@ -50,23 +23,23 @@ def text_to_token(input_str):
     entities=[(i, i.label_, i.label) for i in docs.ents]
     # for ent in entities:
         # print(ent)
-    asking_jeffrey = evalulate_next_input
+    asking_oracle = evalulate_next_input
     evalulated = False
     evalulate_next_input = False
-    heard_jeffrey = False
+    heard_oracle = False
     synonyms_list = []
     i = 0
     for word in docs:
         # print(word.text, word.pos_)
         syns = wordnet.synsets(word.text)
         # print(f'{word.text.upper()}')
-        if not asking_jeffrey:
-            if word.text in jeffrey:
-                asking_jeffrey = True
-                heard_jeffrey = True
+        if not asking_oracle:
+            if word.text in names:
+                asking_oracle = True
+                heard_oracle = True
             i += 1
 
-        if asking_jeffrey:
+        if asking_oracle:
             for syn in syns:
                 # print(f'{syn.name()}: {syn.lemma_names()}')
 
@@ -74,14 +47,15 @@ def text_to_token(input_str):
                     if not lemma_sym in synonyms_list:
                         synonyms_list.append(lemma_sym)
 
-    if asking_jeffrey:
+    if asking_oracle:
+        print("Recognized: %s" % input_str)
         words = [word.text for word in docs[i:]]
         highest_conf_skill = get_highest_confidence_skill(synonyms_list, words)
         if highest_conf_skill:
             highest_conf_skill.do(docs[i:])
             return
 
-    if heard_jeffrey and not evalulated:
+    if heard_oracle and not evalulated:
         evalulate_next_input = True
         print("Next sentence will be evaluated")
 
