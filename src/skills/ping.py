@@ -11,6 +11,6 @@ class Ping:
         tts.say('pong');
 
     def get_confidence(self, synonyms, spoken):
-        if 'ping' in spoken:
+        if 'ping' in spoken or 'paing' in spoken or 'pang' in spoken:
             return 1
         return 0
