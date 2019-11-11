@@ -1,7 +1,7 @@
-# voice-assistant
+# Randall
 Open source voice assistant.
 
-### Installing dependencies
+## Installing dependencies
 Make sure you have Python 3.7.5
 
 Install requirements with pip first.
@@ -20,3 +20,10 @@ Then download package specific datasets.
 `nltk.download('wordnet')`
 
 `wget https://github.com/mozilla/DeepSpeech/releases/download/v0.5.1/deepspeech-0.5.1-models.tar.gz`
+
+## Using the visualizer
+`cd ws_echo_server` and `npm i`
+
+Now you can `node index.js` to start the websocket echo server.
+
+Start Randall and navigate to `html/viz.html` on your web browser.
