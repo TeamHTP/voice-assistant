@@ -26,7 +26,6 @@ def main():
         line = input('> ')
         on_speech(line)
     """
-    # natty.text_to_token("hey oracle, what time is it in manhattan")
 
 
 def on_speech(text):
