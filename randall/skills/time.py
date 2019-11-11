@@ -1,7 +1,7 @@
 from randall.skills.skill import Skill
 from randall import text_to_speech as tts
 from datetime import datetime
-from randall.skills.skills import register
+from randall.skills_registry import register
 
 @register
 class Time(Skill):

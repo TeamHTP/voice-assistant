@@ -1,10 +1,7 @@
-import nltk
 import spacy
 import time
-from nltk.corpus import state_union, wordnet
-from nltk.tokenize import PunktSentenceTokenizer
-from randall.skills import skills
-from randall import ws_client
+from nltk.corpus import wordnet
+from randall import ws_client, skills_registry
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -77,7 +74,7 @@ def text_to_token(input_str):
 def get_highest_confidence_skill(synonyms_list, spoken_list):
     highest_conf = 0
     conf_skill = None
-    for primary_trigger, skill in skills.registry.items():
+    for primary_trigger, skill in skills_registry.registry.items():
         skill_conf = skill.get_confidence(synonyms_list, spoken_list)
         print(f'Confidence in {type(skill).__name__}: {skill_conf}')
         if skill_conf > highest_conf:

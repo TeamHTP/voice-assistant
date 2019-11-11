@@ -1,7 +1,6 @@
 from randall import text_to_speech as tts
 import requests
-import time
-from randall.skills.skills import register
+from randall.skills_registry import register
 
 
 @register

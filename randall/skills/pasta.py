@@ -3,7 +3,7 @@ import praw
 from random import randint
 from randall import text_to_speech as tts
 from randall.skills.skill import Skill
-from randall.skills.skills import register
+from randall.skills_registry import register
 
 
 reddit = praw.Reddit(

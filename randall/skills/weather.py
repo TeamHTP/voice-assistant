@@ -3,7 +3,7 @@ from randall import text_to_speech as tts
 import os
 from randall import location
 import pyowm
-from randall.skills.skills import register
+from randall.skills_registry import register
 
 OPEN_WEATHER_KEY = os.getenv('OPEN_WEATHER_KEY')
 
