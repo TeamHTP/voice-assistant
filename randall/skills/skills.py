@@ -13,13 +13,13 @@ def register(skill):
             print(f'Skill: {type(skill_instance).__name__} not registered for word: {word}, due to conflict.', file=sys.stderr)
     return skill_instance
 
-from src.skills import pasta
-from src.skills import joke
-from src.skills import kill
-from src.skills import time
-from src.skills import timer
-from src.skills import weather
-from src.skills import hello
-from src.skills import ping
-from src.skills import cat
-from src.skills import wikipedia
+from randall.skills import pasta
+from randall.skills import joke
+from randall.skills import kill
+from randall.skills import time
+from randall.skills import timer
+from randall.skills import weather
+from randall.skills import hello
+from randall.skills import ping
+from randall.skills import cat
+from randall.skills import wikipedia

@@ -1,9 +1,9 @@
-from src.skills.skill import Skill
-from src import text_to_speech as tts
+from randall.skills.skill import Skill
+from randall import text_to_speech as tts
 import os
-from src import location
+from randall import location
 import pyowm
-from src.skills.skills import register
+from randall.skills.skills import register
 
 OPEN_WEATHER_KEY = os.getenv('OPEN_WEATHER_KEY')
 

@@ -1,12 +1,13 @@
 import pyttsx3
 import multiprocessing
 import os
-from src import ws_client
+from randall import ws_client
 
-
-engine = pyttsx3.init()
 THREADS = []
-print(multiprocessing.current_process().name)
+
+
+def init():
+    engine = pyttsx3.init()
 
 
 def say(text):

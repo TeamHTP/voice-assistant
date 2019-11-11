@@ -1,4 +1,5 @@
 def main():
+    tts.init()
     parser = argparse.ArgumentParser(description='Stream from microphone using VAD')
     parser.add_argument('-m', '--model', required=True,
                         help='Path to the model (protocol buffer binary file, or entire directory containing all standard-named files for model)')
@@ -19,24 +20,18 @@ def main():
       'trie': 'trie',
       'vad_aggressiveness': 3
     }
-    stt.init(SimpleNamespace(**stt_settings), on_speech)
-    """
-    # Emergency plan Z
-    while True:
-        line = input('> ')
-        on_speech(line)
-    """
+    stt.init(SimpleNamespace(stt_settings), on_speech)
 
 
 def on_speech(text):
-    print("Recognized: %s" % text)
+    # print("Recognized: %s" % text)
     natty.text_to_token(text)
 
 
 if __name__ == '__main__':
-    from src import natural_language_processing as natty
-    from src import speech_to_text as stt
-    from src import text_to_speech as tts
+    from randall import natural_language_processing as natty
+    from randall import speech_to_text as stt
+    from randall import text_to_speech as tts
     from types import SimpleNamespace
     import argparse
     import multiprocessing

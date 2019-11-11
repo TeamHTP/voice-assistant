@@ -3,8 +3,8 @@ import spacy
 import time
 from nltk.corpus import state_union, wordnet
 from nltk.tokenize import PunktSentenceTokenizer
-from src.skills import skills
-from src import ws_client
+from randall.skills import skills
+from randall import ws_client
 
 nlp = spacy.load('en_core_web_sm')
 
