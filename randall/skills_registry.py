@@ -14,7 +14,6 @@ def register(skill):
     return skill_instance
 
 # Importing the skills will invoke @register
-from randall.skills import pasta
 from randall.skills import joke
 from randall.skills import kill
 from randall.skills import time
